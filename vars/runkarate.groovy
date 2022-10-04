@@ -41,34 +41,10 @@ def call() {
 						// released.
 					}
 		stages{
-			stage('Descargar y Ejecutar') 
-			{
-							steps{
-									echo "Iniciando JOB de Karate"
-									//sh 'env > env.txt'
-									//script{
-									//	if (gitlabActionType == "PUSH" && (gitlabBranch == "master" || gitlabBranch == "develop")) {
-									//		echo 'La tarea no se ejecuta si el push viene de "master" o "develop"'
-									//		currentBuild.result = 'ABORTED'
-									//		return
-									//	}
-									//}
-								deleteDir()
-
-								checkout([
-									$class: 'GitSCM',
-									branches: [[name: "${gitlabBranch}"]],
-									extensions: scm.extensions + [[$class: 'CleanCheckout']],
-									userRemoteConfigs: scm.userRemoteConfigs
-								])
-
-								script{
-									def pom = readMavenPom file: 'pom.xml'
-								}
-								echo 'Construyendo codigo..'
-								//sh 'mvn -Dmaven.test.failure.ignore=true clean package'
-
-							}
+			stage("enviando Email") {
+						steps {
+							echo 'demo'
+						}
 			}
 		}
 	}
