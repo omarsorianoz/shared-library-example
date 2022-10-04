@@ -41,7 +41,7 @@ def call() {
 			// released.
 		}
 		stages{
-			stage('Descargar y compilar') {
+			stage('Descargar y Ejecutar') {
 				steps{
 
 					echo "Iniciando JOB de Karate"
@@ -71,20 +71,6 @@ def call() {
 				}
 			}
 
-			stage('resultados') {
-				steps {
-					// Note that parallel can only be used as the only step for a stage.
-					// Also, if you want to have your parallel branches run on different
-					// nodes, you'll need control that manually with "node('some-label') {"
-					// blocks inside the parallel branches, and per-stage post won't be able
-					// to see anything from the parallel workspaces.
-					// This'll be improved by https://issues.jenkins-ci.org/browse/JENKINS-41334,
-					// which adds Declarative-specific syntax for parallel stage execution.
-					parallel("Unit Test": {
-						echo 'Ejecutando resultados....'
-					}
-
-			}
 			stage("enviando Email") {
 				steps {
 					echo 'Revisando calificacion'
