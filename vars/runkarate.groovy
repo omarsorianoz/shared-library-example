@@ -7,7 +7,12 @@ import java.lang.reflect.*
 def call(){                       
     pipeline{                      
        agent any                       
-       stages {                       
+       stages {        
+          stage('Descarga Codigo') {                       
+              steps {                       
+                  git branch: 'main', credentialsId: 'secret-git', url: 'https://github.com/omarsorianoz/karate-gentera.git'                     
+              }                      
+          } 
           stage('Test Stage') {                       
               steps {                       
                   script {                       
