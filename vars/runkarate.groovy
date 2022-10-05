@@ -15,7 +15,7 @@ def call(){
                                     env.RELEASE_SCOPE = input( id: 'userInput', message: 'Selecciona target', 
 										parameters: [ [
 										  $class: 'ChoiceParameterDefinition', 
-										  choices: 'DEV\QA\PRD', 
+										  choices: 'DEV/QA/PRD', 
 										  description: 'Ambiente Target', 
 										  name: 'target'] ])
 
