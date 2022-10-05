@@ -11,9 +11,13 @@ def call(){
           stage("Promp Configuración de Ejecución") {
                 steps {
                         script {
-                                    env.RELEASE_SCOPE = input message: 'Seleccione Ambiente', ok: 'Siguiente!',
-                                    parameters: [choice(name: 'RELEASE_SCOPE', choices: 'DEV\QA\PRD', 
-                                                 description: 'Cual es el ambiente a considerar?')]
+                                     
+                                    env.RELEASE_SCOPE = input( id: 'userInput', message: 'Selecciona target', 
+										parameters: [ [
+										  $class: 'ChoiceParameterDefinition', 
+										  choices: 'DEV\QA\PRD', 
+										  description: 'Ambiente Target', 
+										  name: 'target'] ])
 
                                     env.RAMA = input message: 'por favor inserta rama a Ejecutar',
                                          parameters: [string(defaultValue: 'master',
