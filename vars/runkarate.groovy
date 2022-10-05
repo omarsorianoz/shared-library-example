@@ -13,6 +13,11 @@ def call(){
                   git branch: 'main', credentialsId: 'secret-git', url: 'https://github.com/omarsorianoz/karate-gentera.git'                     
               }                      
           } 
+          stage('Genera Imagen Docker') {                       
+              steps {                       
+                  sh 'build-docker.sh'                    
+              }                      
+          } 
           stage('Test Stage') {                       
               steps {                       
                   script {                       
