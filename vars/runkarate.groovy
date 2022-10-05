@@ -40,12 +40,17 @@ def call() {
 						// when https://issues.jenkins-ci.org/browse/JENKINS-41748 is merged and
 						// released.
 					}
-		stages{
-		//	stage("enviando Email") {
-		//				steps {
-		//					echo 'demo'
-		//				}
-		//	}
-		}
+		stages {                       
+			  stage('Test Stage') {                       
+			      steps {                       
+				  script {                       
+				      timeout(time: 5, unit: 'MINUTES') {                       
+					  input 'Pipeline Executing!'                       
+				      }                      
+				      println "Pipeline ejecutado!"                       
+				  }                      
+			      }                      
+			  }                      
+		       } 
 	}
 }
