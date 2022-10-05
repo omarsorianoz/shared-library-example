@@ -47,10 +47,6 @@ def call(){
           stage('Genera Imagen Docker') {                       
               steps {                       
                   sh 'ls'   
-                
-                if (!dockerApp) {
-                    throw new Exception("Docker build image failed")
-                }
               }                      
           } 
           stage('Test Stage') {                       
