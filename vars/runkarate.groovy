@@ -20,7 +20,8 @@ def call(){
           } 
           stage('Genera Imagen Docker') {                       
               steps {                       
-                  sh 'ls'                    
+                  sh 'ls'   
+                  sh './build-docker.sh'
               }                      
           } 
           stage('Test Stage') {                       
