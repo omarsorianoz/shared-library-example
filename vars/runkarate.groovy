@@ -10,8 +10,12 @@ def call(){
        stages {        
           stage('Descarga Codigo') {                       
               steps {                       
-                  //git branch: 'main', credentialsId: 'secret-git', url: 'https://github.com/omarsorianoz/karate-gentera.git'  
-                  git([url: 'https://github.com/omarsorianoz/karate-gentera.git', branch: 'main', credentialsId: 'secret-git'])
+                  git branch: 'main', credentialsId: 'secret-git', url: 'https://github.com/omarsorianoz/karate-gentera.git'  
+                  //git(
+                  //      url: 'https://github.com/omarsorianoz/karate-gentera.git',
+                  //      credentialsId: 'secret-git',
+                  //      branch: 'main'
+                  //  )
               }                      
           } 
           stage('Genera Imagen Docker') {                       
