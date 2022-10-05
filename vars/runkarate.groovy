@@ -8,6 +8,28 @@ def call(){
     pipeline{                      
        agent any                       
        stages {        
+          stage("Promp Configuración de Ejecución") {
+                steps {
+                        script {
+                                    env.RELEASE_SCOPE = input message: 'Seleccione Ambiente', ok: 'Siguiente!',
+                                    parameters: [choice(name: 'RELEASE_SCOPE', choices: 'DEV\QA\PRD', 
+                                                 description: 'Cual es el ambiente a considerar?')]
+
+                                    env.RAMA = input message: 'por favor inserta rama a Ejecutar',
+                                         parameters: [string(defaultValue: 'master',
+                                                      description: 'Rama a considerar en la ejecucion',
+                                                      name: 'rama')]
+
+                                    env.COMMAND = input message: 'por favor inserta comando a Ejecutar',
+                                         parameters: [string(defaultValue: 'mvn test',
+                                                      description: 'comando a ejecutar',
+                                                      name: 'comando')]
+                                }
+                                echo "${env.RELEASE_SCOPE}"
+                                echo "${env.RAMA}"
+                                echo "${env.COMMAND}"
+                            }
+                    }
           stage('Descarga Codigo') {                       
               steps {                       
                   git branch: 'main', credentialsId: 'secret-git', url: 'https://github.com/omarsorianoz/karate-gentera.git'  
@@ -21,7 +43,10 @@ def call(){
           stage('Genera Imagen Docker') {                       
               steps {                       
                   sh 'ls'   
-                  sh './build-docker.sh'
+                
+                if (!dockerApp) {
+                    throw new Exception("Docker build image failed")
+                }
               }                      
           } 
           stage('Test Stage') {                       
